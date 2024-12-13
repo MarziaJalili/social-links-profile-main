@@ -1,0 +1,129 @@
+:root {
+    /* Colors  */
+    --Green: hsl(75, 94%, 57%);
+    --White: hsl(0, 0%, 100%);
+    --Grey-700: hsl(0, 0%, 20%);
+    --Grey-800: hsl(0, 0%, 12%);
+    --Grey-900: hsl(0, 0%, 8%);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--Grey-900);
+    display: grid;
+    place-items: center;
+    min-height: 100vh;
+    color: var(--White);
+    padding-inline: 2rem;
+    font-family: "Inter", sans-serif;
+}
+
+main {
+    background-color: var(--Grey-800);
+    padding: 2rem 1.6rem;
+    border-radius: 10px;
+    text-align: center;
+}
+
+img {
+    border-radius: 50%;
+    width: 90px;
+}
+
+h1 {
+    font-size: 1.8rem;
+    font-weight: 500;
+    margin-block: 1rem 0.6rem;
+}
+
+.address {
+    color: var(--Green);
+    display: block;
+    margin-bottom: 1.8rem;
+}
+
+.links {
+    list-style: none;
+    margin-top: 1.5rem;
+    display: grid;
+    gap: 1rem;
+}
+
+.links li {
+    display: grid;
+    position: relative;
+    z-index: 1;
+}
+
+.links li button {
+    font: inherit;
+    color: var(--White);
+    font-weight: 600;
+    background-color: var(--Grey-700);
+    padding-block: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border: none;
+    transition: background-color .4s, color .4s;
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+
+}
+
+.links li::after,
+li::before {
+    content: "";
+    position: absolute;
+    background-image: conic-gradient(from var(--angle), transparent 80%, var(--Green));
+    width: 102%;
+    height: 110%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: -1;
+    border-radius: 10px;
+    animation: 2s spin linear infinite;
+    display: none;
+}
+
+.links li::before {
+    filter: blur(1.5rem);
+}
+
+.links li:hover button {
+    background-color: var(--Green);
+    color: var(--Grey-900);
+}
+
+.links li:hover::before,
+.links li:hover::after {
+    display: inline;
+}
+
+@keyframes spin {
+    from {
+        --angle: 0deg;
+    }
+
+    to {
+        --angle: 360deg
+    }
+}
+
+/* desktop */
+@media (min-width: 30em) {
+    .links li {
+        width: 400px
+    }
+}
